@@ -6,15 +6,15 @@
 
 This is a simple, easy-to-use english dictionary. Based off of [Wordnet](https://wordnet.princeton.edu/), and the database of words were copied from [here](https://www.kaggle.com/datasets/dfydata/wordnet-dictionary-thesaurus-files-in-csv-format). This project was made using [Python](https://www.python.org/), [Flask](https://flask.palletsprojects.com/en/3.0.x/), and [SQLite](https://www.sqlite.org/index.html). You can specify the colors of words with multiple meanings for a better viewing experience. There is also a "Word of the Day" for you to test your vocabulary skills.
 
-#### app.py
+#### `app.py`
 
 So first for app.py, it simply defines the routes for each possible action, and the only few functions that are defined in it is the "merge" function, which just generates the html alongside with the colors (using the span tag)
 
-#### helpers.py
+#### `helpers.py`
 
 I got this idea from the Week Nine pset: Finance, where CS50 included a "helpers.py" python program that includes some of the core functions needed for Finance, and inside, the specified_color function is just used to de-clutter app.py's merge function, as they are essentially the same code, and the wotd_gen is a part of wotd, and its responsibility is to check whether or not today's word of the day has been generated or not, so it makes sure so remove the previous answer from yesterday, and if someone has already generated the question, then it would just SELECT it from the database.
 
-#### search.py
+#### `search.py`
 
 It, as the name implies, does all of the searching for anything word related. So the get_word function is from my other github repo (Projects/dict/, and that's where this also originated from) and I just made it a function, it mostly just generates a word_dict, which is a dictionary for the words searched. check_none is a function to check whether or not some of the data from the database has nothing, and adds a helpful text saying that it doesn't exist. wotd_question is actually what the helpers.py's wotd_gen calls for the Word of the Day generation, now I could've made it even more concise, as the meaning questions generate quite similiar to the synonym questions, so that's a place where i could've improved on.
 
@@ -22,11 +22,11 @@ It, as the name implies, does all of the searching for anything word related. So
 
 You might've noticed that I used the chr() and the ord() function a lot in the Word of the Day creation, it's because I have the options A, B, C, and D, and they could benefit from loops as they are just their ASCII codes plus a few (for example D is A + 3), but in C you could just do char addition (aka char d = "A" + 3;) but in python it's harder as python doesn't recognize the integer addition onto a string, so the ord function essentially makes the string/char a number then I could add 1/2/3/0 to it, then convert it back using the chr() function.
 
-#### JS (search.js/index.js)
+#### JS (`search.js`/`index.js`)
 
 For the two JS files, the index.js just makes the + button next to the color specification work, and so it just adds a new input tag into the form. The search.js file on the other hand, uses AJAX to fetch the data from the server (/autocomplete) and the flask server will return a list of the top 20 results (alphabetically sorted), and change the autocomplete ul.
 
-#### dict.db
+#### `dict.db`
 
 If you open the db file, you'll see in the schema:
 
